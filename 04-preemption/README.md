@@ -94,6 +94,7 @@ description: "Critical workloads that can preempt batch jobs"
 
 ## How Preemption Works
 
+```
 ┌──────────────────────────────────────────────────────────────┐
 │                    PREEMPTION PROCESS                        │
 ├──────────────────────────────────────────────────────────────┤
