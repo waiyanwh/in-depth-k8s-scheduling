@@ -22,22 +22,22 @@ With priority: The critical pod **preempts** (evicts) batch jobs and runs immedi
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    PREEMPTION SCENARIO                           │
+│                    PREEMPTION SCENARIO                          │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  BEFORE: Cluster is full of low-priority batch jobs              │
+│                                                                 │
+│  BEFORE: Cluster is full of low-priority batch jobs             │
 │  ┌─────────────────────────────────────────────────────────────┐│
 │  │ gpu-node-0: [batch] [batch]                                 ││
 │  │ gpu-node-1: [batch] [batch]                                 ││
 │  │ gpu-node-2: [batch] [batch]                                 ││
 │  └─────────────────────────────────────────────────────────────┘│
-│                                                                  │
-│  NEW: High-priority "payment" pod arrives                        │
+│                                                                 │
+│  NEW: High-priority "payment" pod arrives                       │
 │  ┌────────────────────────────┐                                 │
 │  │ priorityClassName: high    │                                 │
 │  └────────────────────────────┘                                 │
-│                                                                  │
-│  AFTER: Batch pod evicted, payment pod scheduled                 │
+│                                                                 │
+│  AFTER: Batch pod evicted, payment pod scheduled                │
 │  ┌─────────────────────────────────────────────────────────────┐│
 │  │ gpu-node-0: [PAYMENT] [batch]    ← VIP takes the spot       ││
 │  │ gpu-node-1: [batch] [batch]                                 ││
@@ -94,29 +94,28 @@ description: "Critical workloads that can preempt batch jobs"
 
 ## How Preemption Works
 
-```
 ┌──────────────────────────────────────────────────────────────┐
-│                    PREEMPTION PROCESS                         │
+│                    PREEMPTION PROCESS                        │
 ├──────────────────────────────────────────────────────────────┤
-│                                                               │
-│  1. TRIGGER                                                   │
-│     High-priority pod can't be scheduled (no space)           │
-│                                                               │
-│  2. FIND VICTIMS                                              │
-│     Scheduler looks for nodes where evicting low-priority     │
-│     pods would make room for the high-priority pod            │
-│                                                               │
-│  3. SELECT NODE                                               │
-│     Choose node that requires fewest/lowest evictions         │
-│                                                               │
-│  4. EVICT                                                     │
-│     Delete victim pods (graceful termination applies)         │
-│                                                               │
-│  5. WAIT                                                      │
-│     Wait for victims to terminate                             │
-│                                                               │
-│  6. SCHEDULE                                                  │
-│     Place high-priority pod on the freed node                 │
+│                                                              │
+│  1. TRIGGER                                                  │
+│     High-priority pod can't be scheduled (no space)          │
+│                                                              │
+│  2. FIND VICTIMS                                             │
+│     Scheduler looks for nodes where evicting low-priority    │
+│     pods would make room for the high-priority pod           │
+│                                                              │
+│  3. SELECT NODE                                              │
+│     Choose node that requires fewest/lowest evictions        │
+│                                                              │
+│  4. EVICT                                                    │
+│     Delete victim pods (graceful termination applies)        │
+│                                                              │
+│  5. WAIT                                                     │
+│     Wait for victims to terminate                            │
+│                                                              │
+│  6. SCHEDULE                                                 │
+│     Place high-priority pod on the freed node                │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -256,7 +255,7 @@ Even without preemption, priority affects queue ordering:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    SCHEDULING QUEUE                           │
+│                    SCHEDULING QUEUE                          │
 ├──────────────────────────────────────────────────────────────┤
 │  Priority 1000000: [payment-pod]        ← Scheduled first    │
 │  Priority 100000:  [api-pod-1] [api-pod-2]                   │

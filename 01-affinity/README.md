@@ -49,23 +49,23 @@ More powerful than `nodeSelector` with two modes:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    SCHEDULER DECISION                         │
+│                    SCHEDULER DECISION                        │
 ├──────────────────────────────────────────────────────────────┤
-│                                                               │
-│  1. FILTER PHASE (required affinity)                          │
+│                                                              │
+│  1. FILTER PHASE (required affinity)                         │
 │     ┌─────────────────────────────────────────────────────┐  │
 │     │ Node A (type=gpu)     ✓ Pass                        │  │
 │     │ Node B (type=gpu)     ✓ Pass                        │  │
 │     │ Node C (type=standard) ✗ Filtered Out               │  │
 │     └─────────────────────────────────────────────────────┘  │
-│                                                               │
-│  2. SCORE PHASE (preferred affinity)                          │
+│                                                              │
+│  2. SCORE PHASE (preferred affinity)                         │
 │     ┌─────────────────────────────────────────────────────┐  │
 │     │ Node A: +100 points (has accelerator=nvidia)        │  │
 │     │ Node B: +0 points (no accelerator label)            │  │
 │     └─────────────────────────────────────────────────────┘  │
-│                                                               │
-│  3. WINNER: Node A (highest score)                            │
+│                                                              │
+│  3. WINNER: Node A (highest score)                           │
 └──────────────────────────────────────────────────────────────┘
 ```
 

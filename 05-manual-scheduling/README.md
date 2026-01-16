@@ -23,39 +23,39 @@ Understanding how the scheduler works helps you know when to bypass it.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    kube-scheduler INTERNALS                      │
+│                    kube-scheduler INTERNALS                     │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  1. WATCH                                                        │
+│                                                                 │
+│  1. WATCH                                                       │
 │     ┌────────────────────────────────────────────────────────┐  │
 │     │ API Server: "New pod created, nodeName is empty!"      │  │
 │     └────────────────────────────────────────────────────────┘  │
-│                          ↓                                       │
-│  2. FILTER (Predicates)                                          │
+│                          ↓                                      │
+│  2. FILTER (Predicates)                                         │
 │     ┌────────────────────────────────────────────────────────┐  │
 │     │ Remove nodes that CAN'T run the pod:                   │  │
-│     │ - Insufficient resources                                │  │
-│     │ - Taints not tolerated                                  │  │
-│     │ - Node affinity not matched                             │  │
-│     │ - Port conflicts                                        │  │
+│     │ - Insufficient resources                               │  │
+│     │ - Taints not tolerated                                 │  │
+│     │ - Node affinity not matched                            │  │
+│     │ - Port conflicts                                       │  │
 │     └────────────────────────────────────────────────────────┘  │
-│                          ↓                                       │
-│  3. SCORE (Priorities)                                           │
+│                          ↓                                      │
+│  3. SCORE (Priorities)                                          │
 │     ┌────────────────────────────────────────────────────────┐  │
-│     │ Rank remaining nodes by preference:                     │  │
-│     │ - Preferred affinity                                    │  │
-│     │ - Resource balance                                      │  │
-│     │ - Topology spread                                       │  │
-│     │ - Image locality                                        │  │
+│     │ Rank remaining nodes by preference:                    │  │
+│     │ - Preferred affinity                                   │  │
+│     │ - Resource balance                                     │  │
+│     │ - Topology spread                                      │  │
+│     │ - Image locality                                       │  │
 │     └────────────────────────────────────────────────────────┘  │
-│                          ↓                                       │
-│  4. BIND                                                         │
+│                          ↓                                      │
+│  4. BIND                                                        │
 │     ┌────────────────────────────────────────────────────────┐  │
-│     │ Create a Binding object:                                │  │
-│     │   pod.spec.nodeName = "selected-node"                   │  │
+│     │ Create a Binding object:                               │  │
+│     │   pod.spec.nodeName = "selected-node"                  │  │
 │     └────────────────────────────────────────────────────────┘  │
-│                          ↓                                       │
-│  5. KUBELET                                                      │
+│                          ↓                                      │
+│  5. KUBELET                                                     │
 │     ┌────────────────────────────────────────────────────────┐  │
 │     │ Kubelet on selected node sees the pod and runs it      │  │
 │     └────────────────────────────────────────────────────────┘  │

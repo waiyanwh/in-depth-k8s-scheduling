@@ -23,14 +23,14 @@ Node Affinity tells the scheduler where pods **want** to go. But what if you nee
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    TAINT & TOLERATION MODEL                      │
+│                    TAINT & TOLERATION MODEL                     │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
+│                                                                 │
 │   NODE (has taint)               POD (has toleration)           │
 │   ┌─────────────┐                ┌─────────────────┐            │
 │   │   ⚡ TAINT   │  ◀─── repels ──│ No Toleration   │  ❌ Blocked│
 │   │             │                └─────────────────┘            │
-│   │ tier=secure │                                                │
+│   │ tier=secure │                                               │
 │   │ :NoSchedule │                ┌─────────────────┐            │
 │   │             │  ◀── allowed ──│ ✓ Toleration    │  ✓ Allowed │
 │   └─────────────┘                │ tier=secure     │            │
@@ -50,14 +50,14 @@ In this lab, **production nodes are pre-tainted** with `tier=secure:NoSchedule`:
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│  CLUSTER STATE                                                  │
+│  CLUSTER STATE                                                 │
 ├────────────────────────────────────────────────────────────────┤
-│                                                                 │
+│                                                                │
 │  zone-a-node-*     │ No taint (standard nodes)                 │
 │  zone-b-node-*     │ No taint (standard nodes)                 │
 │  gpu-node-*        │ ⚡ gpu=true:NoSchedule                     │
 │  prod-node-*       │ ⚡ tier=secure:NoSchedule  ← Focus of lab  │
-│                                                                 │
+│                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -82,19 +82,19 @@ kubectl describe node prod-node-0 | grep -A5 Taints
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    SCHEDULER FILTER PHASE                     │
+│                    SCHEDULER FILTER PHASE                    │
 ├──────────────────────────────────────────────────────────────┤
-│  Pod: web-app (no tolerations)                                │
-│                                                               │
-│  Node: prod-node-0                                            │
-│    Taints: tier=secure:NoSchedule                             │
-│    Pod tolerates? NO → ❌ Filtered out                        │
-│                                                               │
-│  Node: zone-a-node-0                                          │
-│    Taints: (none)                                             │
-│    Pod tolerates? N/A → ✓ Pass                                │
-│                                                               │
-│  Result: Pod can only schedule on zone-a-node-0               │
+│  Pod: web-app (no tolerations)                               │
+│                                                              │
+│  Node: prod-node-0                                           │
+│    Taints: tier=secure:NoSchedule                            │
+│    Pod tolerates? NO → ❌ Filtered out                       │
+│                                                              │
+│  Node: zone-a-node-0                                         │
+│    Taints: (none)                                            │
+│    Pod tolerates? N/A → ✓ Pass                               │
+│                                                              │
+│  Result: Pod can only schedule on zone-a-node-0              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -168,22 +168,22 @@ Unlike `NoSchedule`, the `NoExecute` effect:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    NoExecute EVICTION                         │
+│                    NoExecute EVICTION                        │
 ├──────────────────────────────────────────────────────────────┤
-│                                                               │
-│  BEFORE: Node has pods running                                │
+│                                                              │
+│  BEFORE: Node has pods running                               │
 │    ┌─────────────────────────────────────────┐               │
 │    │ zone-a-node-5      [pod-a] [pod-b]      │               │
 │    └─────────────────────────────────────────┘               │
-│                                                               │
+│                                                              │
 │  kubectl taint node zone-a-node-5 outage=true:NoExecute      │
-│                                                               │
-│  AFTER: Pods evicted immediately!                             │
+│                                                              │
+│  AFTER: Pods evicted immediately!                            │
 │    ┌─────────────────────────────────────────┐               │
-│    │ zone-a-node-5      (empty)       ⚡     │               │
+│    │ zone-a-node-5      (empty)       ⚡     │                │
 │    └─────────────────────────────────────────┘               │
-│                                                               │
-│  Pods reschedule to other nodes                               │
+│                                                              │
+│  Pods reschedule to other nodes                              │
 └──────────────────────────────────────────────────────────────┘
 ```
 

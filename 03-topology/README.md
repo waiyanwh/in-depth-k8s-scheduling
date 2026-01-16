@@ -20,10 +20,10 @@ Your application has 10 replicas. Without any constraints, the scheduler might p
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    WITHOUT TOPOLOGY SPREAD                       │
+│                    WITHOUT TOPOLOGY SPREAD                      │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Zone A                          Zone B                          │
+│                                                                 │
+│  Zone A                          Zone B                         │
 │  ┌─────────────────┐            ┌─────────────────┐             │
 │  │ [pod] [pod]     │            │                 │             │
 │  │ [pod] [pod]     │            │ (empty!)        │             │
@@ -31,21 +31,21 @@ Your application has 10 replicas. Without any constraints, the scheduler might p
 │  │ [pod] [pod]     │            │                 │             │
 │  │ [pod] [pod]     │            │                 │             │
 │  └─────────────────┘            └─────────────────┘             │
-│                                                                  │
-│  ❌ If Zone A fails, ALL pods are lost!                          │
+│                                                                 │
+│  ❌ If Zone A fails, ALL pods are lost!                         │
 └─────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────┐
-│                    WITH TOPOLOGY SPREAD                          │
+│                    WITH TOPOLOGY SPREAD                         │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Zone A                          Zone B                          │
+│                                                                 │
+│  Zone A                          Zone B                         │
 │  ┌─────────────────┐            ┌─────────────────┐             │
 │  │ [pod] [pod]     │            │ [pod] [pod]     │             │
 │  │ [pod] [pod]     │            │ [pod] [pod]     │             │
 │  │ [pod]           │            │ [pod]           │             │
 │  └─────────────────┘            └─────────────────┘             │
-│                                                                  │
+│                                                                 │
 │  ✓ If Zone A fails, Zone B still has 5 pods running!            │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -70,20 +70,20 @@ Your application has 10 replicas. Without any constraints, the scheduler might p
 maxSkew = 1 means: the difference between any two zones ≤ 1
 
 ┌────────────────────────────────────────────────────────────┐
-│  Example: 10 pods, 2 zones, maxSkew=1                       │
+│  Example: 10 pods, 2 zones, maxSkew=1                      │
 ├────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Zone A: 5 pods                                             │
-│  Zone B: 5 pods                                             │
-│  Difference = 0  ✓ (0 ≤ maxSkew of 1)                       │
-│                                                             │
-│  Zone A: 6 pods                                             │
-│  Zone B: 5 pods                                             │
-│  Difference = 1  ✓ (1 ≤ maxSkew of 1)                       │
-│                                                             │
-│  Zone A: 7 pods                                             │
-│  Zone B: 5 pods                                             │
-│  Difference = 2  ❌ (2 > maxSkew of 1) → Blocked!           │
+│                                                            │
+│  Zone A: 5 pods                                            │
+│  Zone B: 5 pods                                            │
+│  Difference = 0  ✓ (0 ≤ maxSkew of 1)                      │
+│                                                            │
+│  Zone A: 6 pods                                            │
+│  Zone B: 5 pods                                            │
+│  Difference = 1  ✓ (1 ≤ maxSkew of 1)                      │
+│                                                            │
+│  Zone A: 7 pods                                            │
+│  Zone B: 5 pods                                            │
+│  Difference = 2  ❌ (2 > maxSkew of 1) → Blocked!          │
 └────────────────────────────────────────────────────────────┘
 ```
 
@@ -205,19 +205,19 @@ This deployment has NO topology constraints. Distribution is not guaranteed.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    SCHEDULING new-pod                         │
+│                    SCHEDULING new-pod                        │
 ├──────────────────────────────────────────────────────────────┤
-│  Current state:                                               │
-│    Zone A: 5 payment-gateway pods                             │
-│    Zone B: 4 payment-gateway pods                             │
-│                                                               │
-│  If we place in Zone A:                                       │
-│    Zone A: 6, Zone B: 4 → Skew = 2 ❌ (exceeds maxSkew=1)     │
-│                                                               │
-│  If we place in Zone B:                                       │
-│    Zone A: 5, Zone B: 5 → Skew = 0 ✓ (within maxSkew=1)       │
-│                                                               │
-│  Result: Scheduler chooses Zone B                             │
+│  Current state:                                              │
+│    Zone A: 5 payment-gateway pods                            │
+│    Zone B: 4 payment-gateway pods                            │
+│                                                              │
+│  If we place in Zone A:                                      │
+│    Zone A: 6, Zone B: 4 → Skew = 2 ❌ (exceeds maxSkew=1)    │
+│                                                              │
+│  If we place in Zone B:                                      │
+│    Zone A: 5, Zone B: 5 → Skew = 0 ✓ (within maxSkew=1)      │
+│                                                              │
+│  Result: Scheduler chooses Zone B                            │
 └──────────────────────────────────────────────────────────────┘
 ```
 
