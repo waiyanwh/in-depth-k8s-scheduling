@@ -3,6 +3,23 @@ import json
 import time
 import os
 import sys
+import shutil
+
+# --- Configuration ---
+# Map pod name prefixes to specific icons for the stream
+ICON_MAP = {
+    "ai-model": "🧠",      # Lab 1: GPU Strict
+    "data-process": "💾",  # Lab 1: Flexible
+    "web-app": "🕸️ ",      # Lab 2: Standard Web
+    "sec-monitor": "🛡️ ",  # Lab 2: Security
+    "payment": "💳",       # Lab 3: Zone Aware
+    "legacy": "📦",        # Lab 3: Clumped
+    "batch": "🧱",         # Lab 4: Low Prio (Bricks)
+    "realtime": "🚀",      # Lab 4: High Prio (Rocket)
+    "mystery": "👻",       # Lab 5: Manual
+    "special": "👽",       # Lab 5: Custom
+}
+DEFAULT_ICON = "🟢"
 
 def run_kubectl(cmd):
     try:
@@ -11,86 +28,106 @@ def run_kubectl(cmd):
         return json.loads(result.stdout)
     except: return None
 
+def get_pod_icon(name):
+    for key, icon in ICON_MAP.items():
+        if key in name:
+            return icon
+    return DEFAULT_ICON
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
-    print("Starting K8s Observer... Press Ctrl+C to stop.")
+    print("Starting Advanced K8s Visualizer... (Press Ctrl+C to stop)")
+    
     while True:
+        # Fetch data
         nodes_data = run_kubectl("kubectl get nodes -o json")
-        pods_data = run_kubectl("kubectl get pods -o json")
+        pods_data = run_kubectl("kubectl get pods -o wide -o json")
         
         if not nodes_data or not pods_data:
             print("Connecting to cluster...")
             time.sleep(1)
             continue
 
-        # 1. Map Nodes
+        # 1. Process Nodes
         nodes = {}
         for n in nodes_data['items']:
             name = n['metadata']['name']
             labels = n['metadata']['labels']
-            zone = labels.get('topology.kubernetes.io/zone', 'unknown')
-            n_type = labels.get('type', 'std')
-            # Check if node is tainted
-            tainted = "⛔" if n.get('spec', {}).get('taints') else "  "
+            # Detect Role/Zone
+            zone = labels.get('topology.kubernetes.io/zone', 'no-zone')
+            if "gpu" in labels.get('type', ''): zone = "⚡ GPU POOL"
+            if "production" in labels.get('env', ''): zone = "🔒 PROD POOL"
             
-            nodes[name] = {'zone': zone, 'type': n_type, 'taint': tainted, 'pods': []}
+            # Detect Taints
+            taints = n.get('spec', {}).get('taints', [])
+            taint_icon = "⛔" if taints else "  "
+            
+            nodes[name] = {
+                'zone': zone, 
+                'taint': taint_icon, 
+                'pods': [],
+                'capacity': int(n['status']['capacity'].get('pods', 110)) 
+            }
 
-        # 2. Map Pods
+        # 2. Process Pods
         pending_pods = []
         for p in pods_data['items']:
             name = p['metadata']['name']
-            status = p['status']['phase']
+            phase = p['status']['phase']
             node_name = p['spec'].get('nodeName')
-            prio = p['spec'].get('priorityClassName', 'default')
             
-            if status == "Pending":
-                pending_pods.append(f"{name} [{prio}]")
+            icon = get_pod_icon(name)
+            
+            if phase == "Pending":
+                pending_pods.append(f"{icon} {name}")
             elif node_name in nodes:
-                # Shorten name for display (e.g., 'web-app-x8s9d' -> 'web-app')
-                short_name = name.rsplit('-', 1)[0]
-                nodes[node_name]['pods'].append(short_name)
+                nodes[node_name]['pods'].append(icon)
 
         # 3. Render UI
         clear_screen()
-        print("🔭 K8s SCHEDULING LAB - LIVE VIEW")
-        print("===================================")
+        print("\n 🔭 K8s SCHEDULER DOJO | Live Stream Mode")
+        print(" =========================================")
+
+        # Draw Pending Queue
+        if pending_pods:
+            print(f"\n ⚠️  PENDING QUEUE ({len(pending_pods)}):")
+            print(f" {' '.join(pending_pods)}")
+        else:
+            print("\n ✅  Pending Queue: Empty")
+
+        print("\n" + "-"*70)
+
+        # Group Nodes by Zone for cleaner display
+        nodes_by_zone = {}
+        for n_name, n_data in nodes.items():
+            z = n_data['zone']
+            if z not in nodes_by_zone: nodes_by_zone[z] = []
+            nodes_by_zone[z].append((n_name, n_data))
+
+        # Sort zones to keep order: Zone A, Zone B, GPU, Prod
+        sorted_zones = sorted(nodes_by_zone.keys())
+
+        for zone in sorted_zones:
+            print(f"\n 📍 {zone.upper()}")
+            # Sort nodes by name within zone
+            for n_name, n_data in sorted(nodes_by_zone[zone], key=lambda x: x[0]):
+                pod_list = n_data['pods']
+                pod_count = len(pod_list)
+                
+                # Create a visual "bar" of icons
+                # We strip spaces from icons to make them tight: "🧠🧠🧠"
+                visual_bar = "".join([p.strip() for p in pod_list])
+                
+                # Simple capacity visualization
+                # Assuming max visual length of ~50 chars for the stream
+                print(f" {n_data['taint']} {n_name:<15} │ {visual_bar}")
+
+        print("\n" + "="*70)
+        print(" Legend: 🧠=AI | 💾=Data | 🛡️=Sec | 💳=Pay | 👻=Manual | 🧱=Batch | 🚀=VIP")
         
-        # Section A: The Pending Queue
-        print(f"\n⚠️  PENDING QUEUE ({len(pending_pods)}):")
-        if not pending_pods: print("   (Empty)")
-        for p in pending_pods: print(f"   ⏳ {p}")
-        print("\n" + "-"*60)
-
-        # Section B: The Cluster Map
-        # Sort by Zone -> Type -> Name
-        sorted_nodes = sorted(nodes.keys(), key=lambda x: (nodes[x]['zone'], nodes[x]['type'], x))
-        
-        current_zone = ""
-        for n in sorted_nodes:
-            node = nodes[n]
-            if node['zone'] != current_zone:
-                print(f"\n📍 ZONE: {node['zone'].upper()}")
-                current_zone = node['zone']
-            
-            # Visual representation of pods
-            # We group similar pods: "web-app(x5)"
-            pod_counts = {}
-            for p in node['pods']:
-                pod_counts[p] = pod_counts.get(p, 0) + 1
-            
-            pod_str = ""
-            for p_name, count in pod_counts.items():
-                pod_str += f"🟢 {p_name}"
-                if count > 1: pod_str += f"(x{count})"
-                pod_str += "  "
-
-            print(f"  {node['taint']} [{n:<15}] ({node['type']:<4}) │ {pod_str}")
-
-        print("\n" + "="*35)
-        print("Legend: ⛔ = Tainted Node | ⏳ = Pending Pod")
-        time.sleep(1)
+        time.sleep(0.5) # Faster refresh rate for smooth feel
 
 if __name__ == "__main__":
     main()
