@@ -1,6 +1,6 @@
 # Data Processor Flexible Workload - prefers GPU nodes but can run anywhere
 # This deployment will TRY to schedule on GPU nodes first, but will
-# "spill over" to standard nodes when GPU nodes are full.
+# "spill over" to standard zone nodes when GPU nodes are full.
 #
 # Use case: Data processing that benefits from GPU acceleration but
 # can fall back to CPU processing when GPUs are unavailable.
@@ -30,8 +30,9 @@ spec:
           effect: "NoSchedule"
       affinity:
         nodeAffinity:
-          # preferredDuringSchedulingIgnoredDuringExecution = SOFT preference
-          # Scheduler will TRY to place pods on matching nodes, but it's not required
+          # SOFT PREFERENCE: Try to place on GPU nodes, but not required
+          # When GPU nodes are full, pods spill to zone nodes
+          # (prod nodes are pre-tainted, so they're automatically excluded)
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
               preference:

@@ -3,13 +3,14 @@
 Generate Kubernetes Node YAML manifest for KWOK-managed fake nodes.
 Creates 30 nodes with semantic names for better readability.
 
+GPU nodes have limited pod capacity to demonstrate affinity spillover.
 No external dependencies required - generates YAML directly.
 """
 
 import json
 
-def create_node(name, labels, taints=None):
-    """Create a node dictionary."""
+def create_node(name, labels, taints=None, max_pods="110"):
+    """Create a node dictionary with configurable pod capacity."""
     node = {
         "apiVersion": "v1",
         "kind": "Node",
@@ -37,12 +38,12 @@ def create_node(name, labels, taints=None):
             "allocatable": {
                 "cpu": "32",
                 "memory": "256Gi",
-                "pods": "110"
+                "pods": max_pods  # Configurable pod limit
             },
             "capacity": {
                 "cpu": "32",
                 "memory": "256Gi",
-                "pods": "110"
+                "pods": max_pods  # Configurable pod limit
             },
             "nodeInfo": {
                 "architecture": "amd64",
@@ -134,29 +135,36 @@ def main():
     for i in range(10):
         nodes.append(create_node(
             f"zone-a-node-{i}", 
-            {"topology.kubernetes.io/zone": "us-east-1a", "instance-type": "standard"}
+            {"topology.kubernetes.io/zone": "us-east-1a", "instance-type": "standard"},
+            max_pods="10"  # Standard capacity
         ))
 
     # 2. Zone B Nodes (Standard) -> Names: zone-b-node-0 to 9
     for i in range(10):
         nodes.append(create_node(
             f"zone-b-node-{i}", 
-            {"topology.kubernetes.io/zone": "us-east-1b", "instance-type": "standard"}
+            {"topology.kubernetes.io/zone": "us-east-1b", "instance-type": "standard"},
+            max_pods="10"  # Standard capacity
         ))
 
     # 3. GPU Nodes -> Names: gpu-node-0 to 4
+    # LIMITED TO 2 PODS EACH to force spillover in affinity lab!
     for i in range(5):
         nodes.append(create_node(
             f"gpu-node-{i}", 
             {"type": "gpu", "accelerator": "nvidia-tesla"},
-            taints=[{"key": "gpu", "value": "true", "effect": "NoSchedule"}]
+            taints=[{"key": "gpu", "value": "true", "effect": "NoSchedule"}],
+            max_pods="2"  # Only 2 pods per GPU node!
         ))
 
     # 4. Production Large Nodes -> Names: prod-node-0 to 4
+    # PRE-TAINTED with tier=secure:NoSchedule to reserve for Module 02 lab
     for i in range(5):
         nodes.append(create_node(
             f"prod-node-{i}", 
-            {"env": "production", "size": "large"}
+            {"env": "production", "size": "large"},
+            taints=[{"key": "tier", "value": "secure", "effect": "NoSchedule"}],
+            max_pods="10"  # Standard capacity
         ))
 
     # Output as YAML

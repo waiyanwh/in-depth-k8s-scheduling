@@ -23,11 +23,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -71,11 +71,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -119,11 +119,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -167,11 +167,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -215,11 +215,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -263,11 +263,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -311,11 +311,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -359,11 +359,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -407,11 +407,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -455,11 +455,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -503,11 +503,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -551,11 +551,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -599,11 +599,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -647,11 +647,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -695,11 +695,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -743,11 +743,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -791,11 +791,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -839,11 +839,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -887,11 +887,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -935,11 +935,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -985,11 +985,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1035,11 +1035,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1085,11 +1085,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1135,11 +1135,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1185,11 +1185,11 @@ status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "2"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1228,16 +1228,19 @@ metadata:
     env: "production"
     size: "large"
 spec:
-  taints: []
+  taints:
+    - key: "tier"
+      value: "secure"
+      effect: "NoSchedule"
 status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1276,16 +1279,19 @@ metadata:
     env: "production"
     size: "large"
 spec:
-  taints: []
+  taints:
+    - key: "tier"
+      value: "secure"
+      effect: "NoSchedule"
 status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1324,16 +1330,19 @@ metadata:
     env: "production"
     size: "large"
 spec:
-  taints: []
+  taints:
+    - key: "tier"
+      value: "secure"
+      effect: "NoSchedule"
 status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1372,16 +1381,19 @@ metadata:
     env: "production"
     size: "large"
 spec:
-  taints: []
+  taints:
+    - key: "tier"
+      value: "secure"
+      effect: "NoSchedule"
 status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""
@@ -1420,16 +1432,19 @@ metadata:
     env: "production"
     size: "large"
 spec:
-  taints: []
+  taints:
+    - key: "tier"
+      value: "secure"
+      effect: "NoSchedule"
 status:
   allocatable:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   capacity:
     cpu: "32"
     memory: "256Gi"
-    pods: "110"
+    pods: "10"
   nodeInfo:
     architecture: "amd64"
     bootID: ""

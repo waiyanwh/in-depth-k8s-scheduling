@@ -30,10 +30,10 @@ Node Affinity tells the scheduler where pods **want** to go. But what if you nee
 │   ┌─────────────┐                ┌─────────────────┐            │
 │   │   ⚡ TAINT   │  ◀─── repels ──│ No Toleration   │  ❌ Blocked│
 │   │             │                └─────────────────┘            │
-│   │ gpu=true    │                                                │
+│   │ tier=secure │                                                │
 │   │ :NoSchedule │                ┌─────────────────┐            │
 │   │             │  ◀── allowed ──│ ✓ Toleration    │  ✓ Allowed │
-│   └─────────────┘                │ gpu=true        │            │
+│   └─────────────┘                │ tier=secure     │            │
 │                                  └─────────────────┘            │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -41,6 +41,30 @@ Node Affinity tells the scheduler where pods **want** to go. But what if you nee
 **Think of it like**:
 - **Taint** = Electric fence on the node
 - **Toleration** = Key to pass through the fence
+
+---
+
+## Cluster Setup
+
+In this lab, **production nodes are pre-tainted** with `tier=secure:NoSchedule`:
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│  CLUSTER STATE                                                  │
+├────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  zone-a-node-*     │ No taint (standard nodes)                 │
+│  zone-b-node-*     │ No taint (standard nodes)                 │
+│  gpu-node-*        │ ⚡ gpu=true:NoSchedule                     │
+│  prod-node-*       │ ⚡ tier=secure:NoSchedule  ← Focus of lab  │
+│                                                                 │
+└────────────────────────────────────────────────────────────────┘
+```
+
+Verify with:
+```bash
+kubectl describe node prod-node-0 | grep -A5 Taints
+```
 
 ---
 
@@ -62,8 +86,8 @@ Node Affinity tells the scheduler where pods **want** to go. But what if you nee
 ├──────────────────────────────────────────────────────────────┤
 │  Pod: web-app (no tolerations)                                │
 │                                                               │
-│  Node: gpu-node-0                                             │
-│    Taints: gpu=true:NoSchedule                                │
+│  Node: prod-node-0                                            │
+│    Taints: tier=secure:NoSchedule                             │
 │    Pod tolerates? NO → ❌ Filtered out                        │
 │                                                               │
 │  Node: zone-a-node-0                                          │
@@ -77,31 +101,6 @@ Node Affinity tells the scheduler where pods **want** to go. But what if you nee
 ---
 
 ## YAML Deep Dive
-
-### Applying a Taint to a Node
-
-```bash
-# Syntax: kubectl taint node <node> <key>=<value>:<effect>
-kubectl taint node prod-node-0 tier=secure:NoSchedule
-```
-
-This creates:
-```yaml
-spec:
-  taints:
-    - key: tier
-      value: secure
-      effect: NoSchedule
-```
-
-### Removing a Taint
-
-```bash
-# Add a minus sign at the end
-kubectl taint node prod-node-0 tier=secure:NoSchedule-
-```
-
----
 
 ### Pod WITHOUT Toleration (standard-web-app.yaml)
 
@@ -204,13 +203,13 @@ tolerations:
 
 ## Lab Exercises
 
-### Exercise 1: Apply the "Electric Fence"
+### Exercise 1: Observe the Pre-Applied Taint
 
 ```bash
-./taint-nodes.sh
+kubectl describe node prod-node-0 | grep -A5 Taints
 ```
 
-This taints `prod-node-*` with `tier=secure:NoSchedule`.
+You'll see: `tier=secure:NoSchedule`
 
 ---
 
@@ -246,12 +245,27 @@ kubectl apply -f security-monitor-app.yaml
 
 ---
 
+## Applying and Removing Taints Manually
+
+```bash
+# Apply a taint
+kubectl taint node zone-a-node-0 maintenance=true:NoSchedule
+
+# Remove a taint (add minus sign at the end)
+kubectl taint node zone-a-node-0 maintenance=true:NoSchedule-
+
+# Taint multiple nodes by label
+kubectl taint nodes -l env=production tier=secure:NoSchedule
+```
+
+---
+
 ## Real-World Use Cases
 
 | Use Case | Taint | Purpose |
 |----------|-------|---------|
 | GPU isolation | `gpu=true:NoSchedule` | Reserve GPU nodes for ML workloads |
-| Production separation | `env=prod:NoSchedule` | Keep dev pods off production |
+| Production separation | `tier=secure:NoSchedule` | Keep dev pods off production |
 | Spot instances | `spot=true:PreferNoSchedule` | Prefer non-spot unless needed |
 | Node maintenance | `maintenance=true:NoExecute` | Drain node for updates |
 | Node failure | `node.kubernetes.io/unreachable:NoExecute` | System-applied when node goes down |
@@ -277,7 +291,6 @@ Kubernetes adds these taints automatically:
 
 ```bash
 ./cleanup.sh
-# This removes deployments AND clears taints
 ```
 
 ---
