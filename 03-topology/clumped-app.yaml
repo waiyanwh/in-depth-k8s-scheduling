@@ -1,0 +1,33 @@
+# Clumped App - No Topology Spread Constraints
+# This deployment has no distribution rules, so pods may cluster in one zone.
+# The scheduler may balance them, but there's no guarantee.
+#
+# Use case: Legacy applications that weren't designed for high availability.
+# In a real cluster with uneven node resources, these could all end up in one zone.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacy-cache
+  labels:
+    app: legacy-cache
+    exercise: topology-no-spread
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: legacy-cache
+  template:
+    metadata:
+      labels:
+        app: legacy-cache
+    spec:
+      # NOTE: No topologySpreadConstraints!
+      # Pods may cluster in one zone depending on scheduler decisions
+      containers:
+        - name: cache
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

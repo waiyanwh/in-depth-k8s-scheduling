@@ -1,0 +1,42 @@
+# Zone-Aware App - Uses Topology Spread Constraints
+# This deployment spreads pods evenly across availability zones.
+# With maxSkew=1, the difference between zones can be at most 1 pod.
+#
+# Use case: High-availability applications that must survive zone failures
+# by ensuring equal distribution across zones.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-gateway
+  labels:
+    app: payment-gateway
+    exercise: topology-spread
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: payment-gateway
+  template:
+    metadata:
+      labels:
+        app: payment-gateway
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          # maxSkew=1 means difference between zones can be at most 1 pod
+          # With 20 replicas and 2 zones: 10 pods per zone
+          topologyKey: topology.kubernetes.io/zone
+          # topologyKey defines how to group nodes (by zone label)
+          whenUnsatisfiable: DoNotSchedule
+          # DoNotSchedule = strict mode, pods stay Pending if can't balance
+          labelSelector:
+            matchLabels:
+              app: payment-gateway
+      containers:
+        - name: gateway
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

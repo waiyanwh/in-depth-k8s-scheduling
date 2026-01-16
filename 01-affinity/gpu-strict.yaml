@@ -1,0 +1,47 @@
+# GPU Strict Workload - requires GPU nodes
+# This deployment will ONLY schedule on nodes with type=gpu label.
+# If no GPU nodes are available, pods will remain Pending.
+#
+# Use case: AI/ML workloads that require GPU hardware and will crash without it.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-model-training
+  labels:
+    app: ai-model-training
+    exercise: affinity-required
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: ai-model-training
+  template:
+    metadata:
+      labels:
+        app: ai-model-training
+    spec:
+      # Tolerate the GPU taint so pods can schedule on GPU nodes
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          # requiredDuringSchedulingIgnoredDuringExecution = HARD requirement
+          # Pods MUST be scheduled on nodes matching these rules
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: type
+                    operator: In
+                    values:
+                      - gpu
+      containers:
+        - name: training
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"

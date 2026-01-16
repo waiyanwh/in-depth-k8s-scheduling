@@ -1,0 +1,24 @@
+# Priority Classes for Pod Preemption Demo
+# Higher value = higher priority = wins in resource contention
+#
+# Use case: Define tiers of workload importance so critical apps
+# can preempt (evict) less important ones when resources are scarce.
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: low-priority
+value: 1000
+globalDefault: false
+description: "Low priority workloads - can be preempted by higher priority pods"
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000000
+globalDefault: false
+preemptionPolicy: PreemptLowerPriority
+description: "High priority VIP workloads - will preempt lower priority pods"

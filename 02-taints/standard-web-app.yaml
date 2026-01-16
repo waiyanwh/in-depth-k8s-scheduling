@@ -1,0 +1,36 @@
+# Standard Web App - BLOCKED by taint
+# This deployment targets production nodes but lacks the required toleration.
+# Pods will remain Pending because they can't "cross the fence".
+#
+# Use case: Demonstrates what happens when a standard app tries to run
+# on secure/restricted nodes without proper authorization.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+    exercise: taints-blocked
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      # Target production nodes
+      nodeSelector:
+        env: production
+      # NOTE: No toleration for tier=secure:NoSchedule
+      # This is intentional - pods will be blocked!
+      containers:
+        - name: web
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

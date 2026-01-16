@@ -1,0 +1,24 @@
+# Ghost App - Uses a non-existent scheduler
+# This pod specifies a scheduler that doesn't exist, so it will be ignored
+# by the default scheduler and stay Pending forever.
+#
+# Use case: Demonstrates how schedulerName works and how you can
+# bypass the default scheduler by manually setting nodeName.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mystery-pod
+  labels:
+    app: mystery-pod
+    exercise: manual-scheduling
+spec:
+  # This scheduler doesn't exist - pod will be ignored!
+  schedulerName: ghost-scheduler
+  containers:
+    - name: mystery
+      image: registry.k8s.io/pause:3.9
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "64Mi"

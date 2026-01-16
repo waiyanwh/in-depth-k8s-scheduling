@@ -1,0 +1,40 @@
+# Security Monitor App - ALLOWED through taint
+# This deployment targets production nodes AND has the required toleration.
+# Pods will schedule successfully because they have the "key" to cross the fence.
+#
+# Use case: Security-critical applications that are authorized to run
+# on restricted/secure infrastructure.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sec-monitor
+  labels:
+    app: sec-monitor
+    exercise: taints-allowed
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sec-monitor
+  template:
+    metadata:
+      labels:
+        app: sec-monitor
+    spec:
+      # Target production nodes
+      nodeSelector:
+        env: production
+      # The "key" to cross the fence - tolerate the production taint
+      tolerations:
+        - key: "tier"
+          operator: "Equal"
+          value: "secure"
+          effect: "NoSchedule"
+      containers:
+        - name: monitor
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

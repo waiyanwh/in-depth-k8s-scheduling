@@ -1,0 +1,41 @@
+# High Priority "VIP" Pods - The important workload
+# These pods will preempt (evict) lower priority pods to get scheduled.
+#
+# Use case: Real-time analytics, payment processing, critical services
+# that must run even if it means killing batch jobs.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realtime-analytics
+  labels:
+    app: realtime-analytics
+    exercise: preemption-high
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: realtime-analytics
+  template:
+    metadata:
+      labels:
+        app: realtime-analytics
+    spec:
+      # High priority - will preempt lower priority pods
+      priorityClassName: high-priority
+      # Target same GPU nodes as the batch jobs
+      nodeSelector:
+        type: gpu
+      # Tolerate GPU taint
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      containers:
+        - name: analytics
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"

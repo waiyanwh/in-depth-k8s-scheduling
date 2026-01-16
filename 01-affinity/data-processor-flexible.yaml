@@ -1,0 +1,49 @@
+# Data Processor Flexible Workload - prefers GPU nodes but can run anywhere
+# This deployment will TRY to schedule on GPU nodes first, but will
+# "spill over" to standard nodes when GPU nodes are full.
+#
+# Use case: Data processing that benefits from GPU acceleration but
+# can fall back to CPU processing when GPUs are unavailable.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-processor
+  labels:
+    app: data-processor
+    exercise: affinity-preferred
+spec:
+  replicas: 15
+  selector:
+    matchLabels:
+      app: data-processor
+  template:
+    metadata:
+      labels:
+        app: data-processor
+    spec:
+      # Tolerate the GPU taint so pods CAN schedule on GPU nodes if preferred
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          # preferredDuringSchedulingIgnoredDuringExecution = SOFT preference
+          # Scheduler will TRY to place pods on matching nodes, but it's not required
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: type
+                    operator: In
+                    values:
+                      - gpu
+      containers:
+        - name: processor
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

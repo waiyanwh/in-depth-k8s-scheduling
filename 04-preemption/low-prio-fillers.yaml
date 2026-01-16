@@ -1,0 +1,42 @@
+# Low Priority "Filler" Pods - The "junk" workload
+# 50 pods targeting only 5 GPU nodes = overcrowded!
+# These pods will be evicted when VIP pods need resources.
+#
+# Use case: Batch processing, background jobs, non-critical workloads
+# that can be interrupted and restarted later.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-processing
+  labels:
+    app: batch-processing
+    exercise: preemption-low
+spec:
+  replicas: 50
+  selector:
+    matchLabels:
+      app: batch-processing
+  template:
+    metadata:
+      labels:
+        app: batch-processing
+    spec:
+      # Low priority - can be evicted by higher priority pods
+      priorityClassName: low-priority
+      # Target GPU nodes (only 5 nodes for 50 pods!)
+      nodeSelector:
+        type: gpu
+      # Tolerate GPU taint
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      containers:
+        - name: batch
+          image: registry.k8s.io/pause:3.9
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
