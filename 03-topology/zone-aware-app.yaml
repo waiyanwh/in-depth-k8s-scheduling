@@ -13,7 +13,7 @@ metadata:
     app: payment-gateway
     exercise: topology-spread
 spec:
-  replicas: 10
+  replicas: 20
   selector:
     matchLabels:
       app: payment-gateway
