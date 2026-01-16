@@ -1,713 +1,981 @@
-apiVersion: v1
-kind: Node
+---
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-01
+  name: "zone-a-node-0"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-01"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-0"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-02
+  name: "zone-a-node-1"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-02"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-1"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-03
+  name: "zone-a-node-2"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-03"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-2"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-04
+  name: "zone-a-node-3"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-04"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-3"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-05
+  name: "zone-a-node-4"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-05"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-4"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-06
+  name: "zone-a-node-5"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-06"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-5"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-07
+  name: "zone-a-node-6"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-07"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-6"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-08
+  name: "zone-a-node-7"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-08"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-7"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-09
+  name: "zone-a-node-8"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-09"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-8"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-10
+  name: "zone-a-node-9"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-10"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-a-node-9"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-11
+  name: "zone-b-node-0"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-11"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-0"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-12
+  name: "zone-b-node-1"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-12"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-1"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-13
+  name: "zone-b-node-2"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-13"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-2"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-14
+  name: "zone-b-node-3"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-14"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-3"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-15
+  name: "zone-b-node-4"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-15"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-4"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-16
+  name: "zone-b-node-5"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-16"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-5"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-17
+  name: "zone-b-node-6"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-17"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-6"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-18
+  name: "zone-b-node-7"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-18"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-7"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-19
+  name: "zone-b-node-8"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-19"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-8"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-20
+  name: "zone-b-node-9"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-20"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "zone-b-node-9"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "4"
-    memory: "8Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-21
+  name: "gpu-node-0"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-21"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "gpu-node-0"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
     type: "gpu"
     accelerator: "nvidia-tesla"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
 spec:
   taints:
     - key: "gpu"
@@ -715,38 +983,49 @@ spec:
       effect: "NoSchedule"
 status:
   allocatable:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-22
-  labels:
-    kubernetes.io/hostname: "node-22"
-    type: "gpu"
-    accelerator: "nvidia-tesla"
+  name: "gpu-node-1"
   annotations:
     kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
+  labels:
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "gpu-node-1"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "gpu"
+    accelerator: "nvidia-tesla"
 spec:
   taints:
     - key: "gpu"
@@ -754,38 +1033,49 @@ spec:
       effect: "NoSchedule"
 status:
   allocatable:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-23
-  labels:
-    kubernetes.io/hostname: "node-23"
-    type: "gpu"
-    accelerator: "nvidia-tesla"
+  name: "gpu-node-2"
   annotations:
     kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
+  labels:
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "gpu-node-2"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "gpu"
+    accelerator: "nvidia-tesla"
 spec:
   taints:
     - key: "gpu"
@@ -793,38 +1083,49 @@ spec:
       effect: "NoSchedule"
 status:
   allocatable:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-24
-  labels:
-    kubernetes.io/hostname: "node-24"
-    type: "gpu"
-    accelerator: "nvidia-tesla"
+  name: "gpu-node-3"
   annotations:
     kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
+  labels:
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "gpu-node-3"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "gpu"
+    accelerator: "nvidia-tesla"
 spec:
   taints:
     - key: "gpu"
@@ -832,38 +1133,49 @@ spec:
       effect: "NoSchedule"
 status:
   allocatable:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-25
-  labels:
-    kubernetes.io/hostname: "node-25"
-    type: "gpu"
-    accelerator: "nvidia-tesla"
+  name: "gpu-node-4"
   annotations:
     kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
+  labels:
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "gpu-node-4"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "gpu"
+    accelerator: "nvidia-tesla"
 spec:
   taints:
     - key: "gpu"
@@ -871,199 +1183,268 @@ spec:
       effect: "NoSchedule"
 status:
   allocatable:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "32Gi"
-    pods: "2"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-26
-  labels:
-    kubernetes.io/hostname: "node-26"
-    env: "production"
-    size: "large"
+  name: "prod-node-0"
   annotations:
     kwok.x-k8s.io/node: "fake"
-spec: {}
-status:
-  allocatable:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
-  capacity:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
-  conditions:
-    - type: Ready
-      status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
----
-apiVersion: v1
-kind: Node
-metadata:
-  name: node-27
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-27"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "prod-node-0"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     env: "production"
     size: "large"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-28
+  name: "prod-node-1"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-28"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "prod-node-1"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     env: "production"
     size: "large"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-29
+  name: "prod-node-2"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-29"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "prod-node-2"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     env: "production"
     size: "large"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
 ---
-apiVersion: v1
-kind: Node
+apiVersion: "v1"
+kind: "Node"
 metadata:
-  name: node-30
+  name: "prod-node-3"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
   labels:
-    kubernetes.io/hostname: "node-30"
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "prod-node-3"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
     env: "production"
     size: "large"
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec: {}
+spec:
+  taints: []
 status:
   allocatable:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
   capacity:
-    cpu: "8"
-    memory: "16Gi"
-    pods: "10"
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
   conditions:
-    - type: Ready
+    - type: "Ready"
       status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"
+---
+apiVersion: "v1"
+kind: "Node"
+metadata:
+  name: "prod-node-4"
+  annotations:
+    kwok.x-k8s.io/node: "fake"
+    node.alpha.kubernetes.io/ttl: "0"
+  labels:
+    beta.kubernetes.io/arch: "amd64"
+    beta.kubernetes.io/os: "linux"
+    kubernetes.io/arch: "amd64"
+    kubernetes.io/hostname: "prod-node-4"
+    kubernetes.io/os: "linux"
+    kubernetes.io/role: "agent"
+    node-role.kubernetes.io/agent: ""
+    type: "standard"
+    env: "production"
+    size: "large"
+spec:
+  taints: []
+status:
+  allocatable:
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  capacity:
+    cpu: "32"
+    memory: "256Gi"
+    pods: "110"
+  nodeInfo:
+    architecture: "amd64"
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: "fake"
+    kubeletVersion: "fake"
+    machineID: ""
+    operatingSystem: "linux"
+    osImage: ""
+  phase: "Running"
+  conditions:
+    - type: "Ready"
+      status: "True"
+      lastHeartbeatTime: "2023-01-01T00:00:00Z"
+      lastTransitionTime: "2023-01-01T00:00:00Z"
+      reason: "KubeletReady"
+      message: "kubelet is posting ready status"

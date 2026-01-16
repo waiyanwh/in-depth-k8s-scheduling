@@ -1,149 +1,170 @@
 #!/usr/bin/env python3
 """
 Generate Kubernetes Node YAML manifest for KWOK-managed fake nodes.
-Creates 30 nodes with different configurations for scheduling exercises.
+Creates 30 nodes with semantic names for better readability.
 
-Nodes have limited capacity so pods spill over when nodes are "full".
 No external dependencies required - generates YAML directly.
 """
 
+import json
 
-def generate_node_yaml(name: str, labels: dict, taints: list = None, 
-                       cpu: str = "4", memory: str = "8Gi", pods: str = "10") -> str:
-    """Generate YAML for a single Kubernetes Node with KWOK annotation and capacity."""
-    # Build labels section
-    labels_lines = [f"    kubernetes.io/hostname: \"{name}\""]
-    for k, v in labels.items():
-        labels_lines.append(f"    {k}: \"{v}\"")
-    labels_yaml = "\n".join(labels_lines)
+def create_node(name, labels, taints=None):
+    """Create a node dictionary."""
+    node = {
+        "apiVersion": "v1",
+        "kind": "Node",
+        "metadata": {
+            "name": name,
+            "annotations": {
+                "kwok.x-k8s.io/node": "fake",
+                "node.alpha.kubernetes.io/ttl": "0"
+            },
+            "labels": {
+                "beta.kubernetes.io/arch": "amd64",
+                "beta.kubernetes.io/os": "linux",
+                "kubernetes.io/arch": "amd64",
+                "kubernetes.io/hostname": name,
+                "kubernetes.io/os": "linux",
+                "kubernetes.io/role": "agent",
+                "node-role.kubernetes.io/agent": "",
+                "type": "standard"
+            }
+        },
+        "spec": {
+            "taints": taints if taints else []
+        },
+        "status": {
+            "allocatable": {
+                "cpu": "32",
+                "memory": "256Gi",
+                "pods": "110"
+            },
+            "capacity": {
+                "cpu": "32",
+                "memory": "256Gi",
+                "pods": "110"
+            },
+            "nodeInfo": {
+                "architecture": "amd64",
+                "bootID": "",
+                "containerRuntimeVersion": "",
+                "kernelVersion": "",
+                "kubeProxyVersion": "fake",
+                "kubeletVersion": "fake",
+                "machineID": "",
+                "operatingSystem": "linux",
+                "osImage": ""
+            },
+            "phase": "Running",
+            "conditions": [{
+                "type": "Ready",
+                "status": "True",
+                "lastHeartbeatTime": "2023-01-01T00:00:00Z",
+                "lastTransitionTime": "2023-01-01T00:00:00Z",
+                "reason": "KubeletReady",
+                "message": "kubelet is posting ready status"
+            }]
+        }
+    }
+    node["metadata"]["labels"].update(labels)
+    return node
+
+
+def to_yaml(obj, indent=0):
+    """Convert a Python object to YAML string (simple implementation)."""
+    prefix = "  " * indent
     
-    yaml_content = f"""apiVersion: v1
-kind: Node
-metadata:
-  name: {name}
-  labels:
-{labels_yaml}
-  annotations:
-    kwok.x-k8s.io/node: "fake"
-spec:"""
+    if isinstance(obj, dict):
+        if not obj:
+            return "{}"
+        lines = []
+        for k, v in obj.items():
+            if isinstance(v, (dict, list)):
+                if not v:
+                    lines.append(f"{prefix}{k}: {'{}' if isinstance(v, dict) else '[]'}")
+                else:
+                    lines.append(f"{prefix}{k}:")
+                    lines.append(to_yaml(v, indent + 1))
+            elif isinstance(v, bool):
+                lines.append(f"{prefix}{k}: {'true' if v else 'false'}")
+            elif isinstance(v, str):
+                if v == "":
+                    lines.append(f'{prefix}{k}: ""')
+                else:
+                    lines.append(f'{prefix}{k}: "{v}"')
+            else:
+                lines.append(f"{prefix}{k}: {v}")
+        return "\n".join(lines)
     
-    if taints:
-        yaml_content += "\n  taints:"
-        for taint in taints:
-            yaml_content += f"""
-    - key: "{taint['key']}"
-      value: "{taint['value']}"
-      effect: "{taint['effect']}\""""
+    elif isinstance(obj, list):
+        if not obj:
+            return "[]"
+        lines = []
+        for item in obj:
+            if isinstance(item, dict):
+                first = True
+                for k, v in item.items():
+                    if first:
+                        if isinstance(v, str):
+                            lines.append(f"{prefix}- {k}: \"{v}\"")
+                        else:
+                            lines.append(f"{prefix}- {k}: {v}")
+                        first = False
+                    else:
+                        if isinstance(v, str):
+                            lines.append(f"{prefix}  {k}: \"{v}\"")
+                        else:
+                            lines.append(f"{prefix}  {k}: {v}")
+            else:
+                lines.append(f"{prefix}- {item}")
+        return "\n".join(lines)
+    
+    elif isinstance(obj, bool):
+        return "true" if obj else "false"
+    elif isinstance(obj, str):
+        return f'"{obj}"'
     else:
-        yaml_content += " {}"
-    
-    # Add status with capacity and allocatable resources
-    # This is crucial for KWOK to respect resource limits!
-    yaml_content += f"""
-status:
-  allocatable:
-    cpu: "{cpu}"
-    memory: "{memory}"
-    pods: "{pods}"
-  capacity:
-    cpu: "{cpu}"
-    memory: "{memory}"
-    pods: "{pods}"
-  conditions:
-    - type: Ready
-      status: "True"
-      reason: KubeletReady
-      message: "kubelet is ready"
-    - type: MemoryPressure
-      status: "False"
-      reason: KubeletHasSufficientMemory
-    - type: DiskPressure
-      status: "False"
-      reason: KubeletHasNoDiskPressure
-    - type: PIDPressure
-      status: "False"
-      reason: KubeletHasSufficientPID"""
-    
-    return yaml_content
-
-
-def generate_all_nodes() -> str:
-    """Generate YAML for all 30 nodes."""
-    nodes_yaml = []
-    
-    # Nodes 1-10: us-east-1a zone, standard instance type
-    # Medium capacity: 4 CPU, 8Gi memory, max 10 pods
-    for i in range(1, 11):
-        node = generate_node_yaml(
-            name=f"node-{i:02d}",
-            labels={
-                "topology.kubernetes.io/zone": "us-east-1a",
-                "instance-type": "standard"
-            },
-            cpu="4", memory="8Gi", pods="10"
-        )
-        nodes_yaml.append(node)
-    
-    # Nodes 11-20: us-east-1b zone, standard instance type
-    for i in range(11, 21):
-        node = generate_node_yaml(
-            name=f"node-{i:02d}",
-            labels={
-                "topology.kubernetes.io/zone": "us-east-1b",
-                "instance-type": "standard"
-            },
-            cpu="4", memory="8Gi", pods="10"
-        )
-        nodes_yaml.append(node)
-    
-    # Nodes 21-25: GPU nodes with taint
-    # Limited capacity: only 2 pods per node to force spillover!
-    for i in range(21, 26):
-        node = generate_node_yaml(
-            name=f"node-{i:02d}",
-            labels={
-                "type": "gpu",
-                "accelerator": "nvidia-tesla"
-            },
-            taints=[
-                {
-                    "key": "gpu",
-                    "value": "true",
-                    "effect": "NoSchedule"
-                }
-            ],
-            cpu="8", memory="32Gi", pods="2"  # Only 2 pods per GPU node!
-        )
-        nodes_yaml.append(node)
-    
-    # Nodes 26-30: Production large nodes
-    for i in range(26, 31):
-        node = generate_node_yaml(
-            name=f"node-{i:02d}",
-            labels={
-                "env": "production",
-                "size": "large"
-            },
-            cpu="8", memory="16Gi", pods="10"
-        )
-        nodes_yaml.append(node)
-    
-    return "\n---\n".join(nodes_yaml)
+        return str(obj)
 
 
 def main():
-    """Generate nodes.yaml file."""
-    yaml_content = generate_all_nodes()
+    nodes = []
     
-    with open("nodes.yaml", "w") as f:
-        f.write(yaml_content)
-        f.write("\n")
+    # 1. Zone A Nodes (Standard) -> Names: zone-a-node-0 to 9
+    for i in range(10):
+        nodes.append(create_node(
+            f"zone-a-node-{i}", 
+            {"topology.kubernetes.io/zone": "us-east-1a", "instance-type": "standard"}
+        ))
+
+    # 2. Zone B Nodes (Standard) -> Names: zone-b-node-0 to 9
+    for i in range(10):
+        nodes.append(create_node(
+            f"zone-b-node-{i}", 
+            {"topology.kubernetes.io/zone": "us-east-1b", "instance-type": "standard"}
+        ))
+
+    # 3. GPU Nodes -> Names: gpu-node-0 to 4
+    for i in range(5):
+        nodes.append(create_node(
+            f"gpu-node-{i}", 
+            {"type": "gpu", "accelerator": "nvidia-tesla"},
+            taints=[{"key": "gpu", "value": "true", "effect": "NoSchedule"}]
+        ))
+
+    # 4. Production Large Nodes -> Names: prod-node-0 to 4
+    for i in range(5):
+        nodes.append(create_node(
+            f"prod-node-{i}", 
+            {"env": "production", "size": "large"}
+        ))
+
+    # Output as YAML
+    yaml_docs = []
+    for node in nodes:
+        yaml_docs.append(to_yaml(node))
     
-    print("Generated nodes.yaml with 30 nodes (with resource capacity):")
-    print("  - Nodes 01-10: zone=us-east-1a, 10 pods max")
-    print("  - Nodes 11-20: zone=us-east-1b, 10 pods max")
-    print("  - Nodes 21-25: type=gpu (tainted), 2 pods max - FORCES SPILLOVER!")
-    print("  - Nodes 26-30: env=production, 10 pods max")
+    print("---\n" + "\n---\n".join(yaml_docs))
 
 
 if __name__ == "__main__":
