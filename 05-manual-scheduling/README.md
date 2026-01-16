@@ -35,7 +35,7 @@ You'll see no scheduling events because no scheduler is handling it.
 ### 2. Be the Scheduler!
 
 ```bash
-./be-the-scheduler.sh node-01
+./be-the-scheduler.sh zone-a-node-0
 ```
 
 Or specify a different node:

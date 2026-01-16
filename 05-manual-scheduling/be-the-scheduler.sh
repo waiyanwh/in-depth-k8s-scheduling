@@ -14,7 +14,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Default node or use argument
-TARGET_NODE="${1:-node-01}"
+TARGET_NODE="${1:-zone-a-node-0}"
 POD_NAME="mystery-pod"
 NAMESPACE="${2:-default}"
 

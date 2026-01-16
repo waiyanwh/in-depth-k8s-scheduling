@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Verify pod distribution across availability zones
-# Shows how many pods are in each zone
+# Uses node name prefix to determine zone (zone-a-* or zone-b-*)
 # Compatible with Bash 3.x (macOS default)
 #
 
@@ -32,7 +32,7 @@ if [ -z "$PODS" ]; then
     exit 0
 fi
 
-# Count pods per zone
+# Count pods per zone based on node name prefix
 ZONE_A_COUNT=0
 ZONE_B_COUNT=0
 UNKNOWN_COUNT=0
@@ -41,13 +41,10 @@ UNKNOWN_COUNT=0
 while IFS= read -r line; do
     NODE=$(echo "$line" | awk '{print $7}')
     
-    # Determine zone based on node name
-    # Nodes 01-10 = us-east-1a, Nodes 11-20 = us-east-1b
-    NODE_NUM=$(echo "$NODE" | sed 's/node-//' | sed 's/^0//')
-    
-    if [ -n "$NODE_NUM" ] && [ "$NODE_NUM" -ge 1 ] 2>/dev/null && [ "$NODE_NUM" -le 10 ]; then
+    # Determine zone based on node name prefix
+    if echo "$NODE" | grep -q "^zone-a-"; then
         ZONE_A_COUNT=$((ZONE_A_COUNT + 1))
-    elif [ -n "$NODE_NUM" ] && [ "$NODE_NUM" -ge 11 ] 2>/dev/null && [ "$NODE_NUM" -le 20 ]; then
+    elif echo "$NODE" | grep -q "^zone-b-"; then
         ZONE_B_COUNT=$((ZONE_B_COUNT + 1))
     else
         UNKNOWN_COUNT=$((UNKNOWN_COUNT + 1))
@@ -88,11 +85,10 @@ for app in $APPS; do
     
     while IFS= read -r line; do
         NODE=$(echo "$line" | awk '{print $7}')
-        NODE_NUM=$(echo "$NODE" | sed 's/node-//' | sed 's/^0//')
         
-        if [ -n "$NODE_NUM" ] && [ "$NODE_NUM" -ge 1 ] 2>/dev/null && [ "$NODE_NUM" -le 10 ]; then
+        if echo "$NODE" | grep -q "^zone-a-"; then
             APP_ZONE_A=$((APP_ZONE_A + 1))
-        elif [ -n "$NODE_NUM" ] && [ "$NODE_NUM" -ge 11 ] 2>/dev/null && [ "$NODE_NUM" -le 20 ]; then
+        elif echo "$NODE" | grep -q "^zone-b-"; then
             APP_ZONE_B=$((APP_ZONE_B + 1))
         else
             APP_OTHER=$((APP_OTHER + 1))

@@ -68,5 +68,5 @@ kubectl apply -f ../01-affinity/data-processor-flexible.yaml
 ```bash
 kubectl delete -f standard-web-app.yaml
 kubectl delete -f security-monitor-app.yaml
-kubectl taint node node-01 outage=true:NoExecute-  # Remove maintenance taint
+kubectl taint node zone-a-node-5 outage=true:NoExecute-  # Remove maintenance taint
 ```

@@ -1,11 +1,9 @@
 #!/bin/bash
 #
 # Watch pod distribution across GPU vs Standard nodes
+# Uses label-based detection for semantic node names
 # Updates every 2 seconds
 #
-
-# Get list of GPU nodes (nodes 21-25 with type=gpu label)
-GPU_NODES=$(kubectl get nodes -l type=gpu --no-headers -o custom-columns=":metadata.name" | tr '\n' '|' | sed 's/|$//')
 
 # Colors
 GREEN='\033[0;32m'
@@ -24,9 +22,19 @@ print_header() {
     echo "║           Pod Distribution Watcher (Ctrl+C to exit)        ║"
     echo "╚════════════════════════════════════════════════════════════╝"
     echo ""
-    echo -e "${CYAN}GPU Nodes: node-21 to node-25 (type=gpu)${NC}"
-    echo -e "${CYAN}Standard Nodes: node-01 to node-20, node-26 to node-30${NC}"
+    echo -e "${CYAN}GPU Nodes: gpu-node-0 to gpu-node-4 (type=gpu)${NC}"
+    echo -e "${CYAN}Standard Nodes: zone-a-node-*, zone-b-node-*, prod-node-*${NC}"
     echo ""
+}
+
+# Get list of GPU nodes by label
+get_gpu_nodes() {
+    kubectl get nodes -l type=gpu --no-headers -o custom-columns=":metadata.name" 2>/dev/null | tr '\n' ' '
+}
+
+is_gpu_node() {
+    local node=$1
+    echo "$node" | grep -q "^gpu-"
 }
 
 watch_distribution() {
@@ -56,7 +64,7 @@ watch_distribution() {
 
                 if [ "$STATUS" == "Pending" ] || [ "$NODE" == "<none>" ]; then
                     ((PENDING_COUNT++))
-                elif echo "$NODE" | grep -qE "^node-(2[1-5])$"; then
+                elif is_gpu_node "$NODE"; then
                     ((GPU_POD_COUNT++))
                 else
                     ((STANDARD_POD_COUNT++))
@@ -102,7 +110,7 @@ watch_distribution() {
 
                     if [ "$STATUS" == "Pending" ] || [ "$NODE" == "<none>" ]; then
                         ((DP_PENDING++))
-                    elif echo "$NODE" | grep -qE "^node-(2[1-5])$"; then
+                    elif is_gpu_node "$NODE"; then
                         ((DP_GPU++))
                     else
                         ((DP_STD++))
