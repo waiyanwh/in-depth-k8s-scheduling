@@ -11,6 +11,9 @@ import json
 
 def create_node(name, labels, taints=None, max_pods="110"):
     """Create a node dictionary with configurable pod capacity."""
+    # Only apply taints that are explicitly specified (no base KWOK taint)
+    all_taints = taints if taints else []
+    
     node = {
         "apiVersion": "v1",
         "kind": "Node",
@@ -31,9 +34,7 @@ def create_node(name, labels, taints=None, max_pods="110"):
                 "type": "standard"
             }
         },
-        "spec": {
-            "taints": taints if taints else []
-        },
+        "spec": {},
         "status": {
             "allocatable": {
                 "cpu": "32",
@@ -54,7 +55,8 @@ def create_node(name, labels, taints=None, max_pods="110"):
                 "kubeletVersion": "fake",
                 "machineID": "",
                 "operatingSystem": "linux",
-                "osImage": ""
+                "osImage": "",
+                "systemUUID": ""
             },
             "phase": "Running",
             "conditions": [{
@@ -68,6 +70,11 @@ def create_node(name, labels, taints=None, max_pods="110"):
         }
     }
     node["metadata"]["labels"].update(labels)
+    
+    # Only add taints to spec if there are any
+    if all_taints:
+        node["spec"]["taints"] = all_taints
+    
     return node
 
 

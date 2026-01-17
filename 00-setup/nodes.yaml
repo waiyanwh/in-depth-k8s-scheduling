@@ -17,8 +17,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -38,6 +37,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -65,8 +65,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -86,6 +85,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -113,8 +113,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -134,6 +133,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -161,8 +161,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -182,6 +181,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -209,8 +209,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -230,6 +229,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -257,8 +257,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -278,6 +277,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -305,8 +305,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -326,6 +325,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -353,8 +353,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -374,6 +373,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -401,8 +401,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -422,6 +421,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -449,8 +449,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1a"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -470,6 +469,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -497,8 +497,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -518,6 +517,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -545,8 +545,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -566,6 +565,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -593,8 +593,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -614,6 +613,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -641,8 +641,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -662,6 +661,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -689,8 +689,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -710,6 +709,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -737,8 +737,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -758,6 +757,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -785,8 +785,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -806,6 +805,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -833,8 +833,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -854,6 +853,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -881,8 +881,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -902,6 +901,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -929,8 +929,7 @@ metadata:
     type: "standard"
     topology.kubernetes.io/zone: "us-east-1b"
     instance-type: "standard"
-spec:
-  taints: []
+spec: {}
 status:
   allocatable:
     cpu: "32"
@@ -950,6 +949,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1000,6 +1000,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1050,6 +1051,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1100,6 +1102,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1150,6 +1153,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1200,6 +1204,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1251,6 +1256,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1302,6 +1308,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1353,6 +1360,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1404,6 +1412,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
@@ -1455,6 +1464,7 @@ status:
     machineID: ""
     operatingSystem: "linux"
     osImage: ""
+    systemUUID: ""
   phase: "Running"
   conditions:
     - type: "Ready"
