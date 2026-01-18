@@ -13,7 +13,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 # Pick a standard node (us-east-1a zone)
-NODE="zone-a-node-7"
+NODE="zone-b-node-7"
 
 echo ""
 echo "╔════════════════════════════════════════════════════════════╗"
